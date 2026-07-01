@@ -1,1 +1,1 @@
-# nexus-core-pluigin
+# nexus-core-plugin
