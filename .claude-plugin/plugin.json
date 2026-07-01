@@ -1,0 +1,10 @@
+{
+  "name": "nexus",
+  "displayName": "NEXUS Content Pipeline",
+  "version": "1.0.0",
+  "description": "SEO/GEO content pipeline for TrueMission: outline with real internal link discovery and conversion-point tagging, plus a conversion layer that injects site-branded WhatsApp CTAs and soft product upsells into finished articles.",
+  "author": "Lawrence Philemon",
+  "commands": "./commands",
+  "skills": "./skills",
+  "keywords": ["seo", "geo", "content", "insurance", "cta", "upsell", "internal-links", "truemission"]
+}
