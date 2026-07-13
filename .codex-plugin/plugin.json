@@ -1,0 +1,27 @@
+{
+  "name": "nexus-plugin",
+  "version": "1.1.0",
+  "description": "SEO/GEO content pipeline for research, intent analysis, outlines, drafting, humanization, and conversion.",
+  "author": {
+    "name": "Lawrence Philemon",
+    "url": "https://github.com/lawzphilemon"
+  },
+  "homepage": "https://github.com/lawzphilemon/nexus-plugin",
+  "repository": "https://github.com/lawzphilemon/nexus-plugin",
+  "keywords": ["seo", "geo", "content", "humanizer", "conversion"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "NEXUS Content Pipeline",
+    "shortDescription": "Research, draft, humanize, and convert SEO/GEO articles.",
+    "longDescription": "A staged SEO/GEO content workflow covering SERP research, intent and E-E-A-T gaps, query fan-out, outlines, drafting, final SEO packaging, humanization, and conversion CTAs.",
+    "developerName": "Lawrence Philemon",
+    "category": "Productivity",
+    "capabilities": ["Web research", "Content writing", "SEO/GEO", "Humanization"],
+    "defaultPrompt": [
+      "Research a keyword with the NEXUS pipeline.",
+      "Continue my article to the next NEXUS stage.",
+      "Humanize this Indonesian or English text."
+    ],
+    "brandColor": "#2563EB"
+  }
+}
