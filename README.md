@@ -1,6 +1,6 @@
 # NEXUS Content Pipeline
 
-Claude Code plugin for TrueMission's SEO/GEO content workflow — and reusable for other clients too (see "Not just TrueMission" below).
+Claude Code and Codex plugin for TrueMission's SEO/GEO content workflow — and reusable for other clients too (see "Not just TrueMission" below).
 
 ## Install
 
@@ -10,6 +10,12 @@ Claude Code plugin for TrueMission's SEO/GEO content workflow — and reusable f
 ```
 
 (Replace `<your-github-username>` with the actual GitHub path once uploaded — e.g. `lawrencephilemon/nexus-plugin`.)
+
+### Codex
+
+The Codex adapter uses the same `commands/*.md` and shared skills as Claude, so both platforms remain in sync. Install the repository as a Codex plugin, then use `$nexus-pipeline` to continue from the latest completed stage or invoke a specific stage such as `$nexus-research`, `$nexus-outline`, or `$nexus-finaldraft`.
+
+See [`CODEX.md`](CODEX.md) for all Codex entry points and adapter details.
 
 ## Pipeline
 

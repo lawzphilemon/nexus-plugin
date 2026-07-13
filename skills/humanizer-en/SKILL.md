@@ -1,6 +1,6 @@
 ---
 name: humanizer-en
-description: Use when writing or finalizing English article content (NEX-F, NEX-Fn, or /humanize). Applies the NEXUS humanizer filter: Layer 0 SQEG protections, register selection, 32 AI-pattern fixes, and a 16-point self-check, so output reads like a competent human writer, not AI, while preserving E-E-A-T signals.
+description: "Use when writing or finalizing English article content (NEX-F, NEX-Fn, or /humanize). Applies the NEXUS humanizer filter: Layer 0 SQEG protections, register selection, 32 AI-pattern fixes, and a 16-point self-check, so output reads like a competent human writer, not AI, while preserving E-E-A-T signals."
 ---
 
 # Humanizer Knowledge — English
