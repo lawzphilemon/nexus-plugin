@@ -1,0 +1,23 @@
+{
+  "name": "nexus-plugin",
+  "owner": {
+    "name": "Lawrence Philemon"
+  },
+  "metadata": {
+    "description": "TrueMission's NEXUS SEO/GEO content pipeline plugin for Claude Code",
+    "version": "1.1.0"
+  },
+  "plugins": [
+    {
+      "name": "nexus",
+      "source": "./",
+      "description": "Full SEO/GEO content pipeline: SERP analysis, intent + E-E-A-T gap analysis, query fan-out + GEO structure prescription, outline with real internal link discovery, first draft, final polish with SEO pack + schema, standalone humanizer, and a conversion layer that injects site-branded CTAs and soft product upsells.",
+      "version": "1.1.0",
+      "author": {
+        "name": "Lawrence Philemon"
+      },
+      "license": "MIT",
+      "category": "content"
+    }
+  ]
+}
