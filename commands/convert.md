@@ -76,6 +76,8 @@ Never deliver non-compliant content in either case.
 
 Deliver the full article with CTA blocks inserted inline at their exact position, as plaintext HTML (Google Docs cannot render live HTML — this is expected).
 
+Preserve the On-Page SEO Pack and Schema Markup from NEX-Fn unchanged after the article. Do not place CTA blocks inside the metadata or schema.
+
 Directly below each injected CTA block, add a one-line implementation note in brackets, e.g. `[Paste this block in WordPress Classic Editor → Text tab. Do not switch to Visual tab after pasting.]`
 
-End with: "CTA placement done — [N] block(s) inserted. Paste to WordPress Classic Editor Text tab only."
+End with: "CTA placement done — [N] block(s) inserted. Paste to WordPress Classic Editor Text tab only. Run /export-docx to export this converted version."
