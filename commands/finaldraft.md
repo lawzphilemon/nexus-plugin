@@ -52,7 +52,17 @@ Internal links used: [anchor text] → [destination URL]
 }
 ```
 
-6. Ask if further revisions are needed.
+6. Offer the next action:
+
+```
+Final draft complete. Choose:
+1. Revise the article
+2. Run /convert
+3. Run /export-docx
+4. Run /convert, then /export-docx
+```
+
+If the user chooses option 4, complete `/convert` first and export that converted version without asking them to repeat the request.
 
 ## Rules
 - On-Page SEO Pack and Schema are mandatory — never skip.

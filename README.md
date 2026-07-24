@@ -17,10 +17,10 @@ The Codex adapter uses the same `commands/*.md` and shared skills as Claude, so 
 
 See [`CODEX.md`](CODEX.md) for all Codex entry points and adapter details.
 
-## Pipeline
+## Claude Code pipeline
 
 ```
-/research → /improve → /geo → /outline → /firstdraft → /finaldraft → /convert
+/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert] → /export-docx
 ```
 
 `/humanize` also works standalone, outside the pipeline.
@@ -56,6 +56,17 @@ Turns a finished article into a lead-generating asset: contact CTA blocks + soft
 - Max 3 CTAs per article, runs a compliance check before delivering.
 
 Requires `WebFetch` and `WebSearch`.
+
+### `/export-docx` — NEX-X
+Exports the latest final or converted article to a real Word document with:
+- A metadata table for article title, slug, and meta description
+- Real Word heading styles for the article hierarchy
+- Preserved lists, links, article tables, and CTA HTML
+- JSON-LD schema at the end
+
+Uses LibreOffice's native HTML-to-DOCX conversion, so no Python package installation is required. Visual render QA runs through LibreOffice and Poppler when available.
+
+`/export-docx` is currently Claude Code-only; the Codex adapters are unchanged.
 
 ### `/humanize` — NEX-H
 Standalone humanizer for any pasted or uploaded text. Auto-detects English vs Bahasa Indonesia (or mixed) and applies the matching skill.
