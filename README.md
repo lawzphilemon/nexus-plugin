@@ -18,7 +18,7 @@ See [`CODEX.md`](CODEX.md) for Codex entry points.
 ## Claude Code pipeline
 
 ```text
-/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert] → /export-docx
+/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert | /convert-truemission] → /export-docx
 ```
 
 `/humanize` also works standalone.
@@ -61,6 +61,12 @@ Adds up to three site-branded contact CTA blocks and optional factual product or
 
 Requires `WebFetch` and `WebSearch`.
 
+### `/convert-truemission` — NEX-U-TM
+
+Runs the same conversion workflow with an isolated TrueMission/Prudential profile containing the approved domain, WhatsApp destination, brand palette, RIPLAY sourcing rules, UP planning formula, and insurance compliance checks.
+
+This profile is Claude Code-only and is never loaded by the general `/convert` command.
+
 ### `/export-docx` — NEX-X
 
 Exports the latest final or converted article to a Word document containing:
@@ -83,3 +89,4 @@ Humanizes Indonesian, English, or mixed text while preserving meaning and E-E-A-
 - `humanizer-id` and `humanizer-en` — language-specific humanization.
 - `wa-cta-standard` — three generic, site-branded CTA layouts.
 - `product-upsell` — evidence-gated product or service mapping for any industry.
+- `truemission-prudential` — isolated Claude-only profile loaded by `/convert-truemission`.
