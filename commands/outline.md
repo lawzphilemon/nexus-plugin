@@ -18,7 +18,7 @@ Confirm: target language, word count, tone of voice, end-goal CTA. Ask if missin
 If the user has already provided specific internal links to use, skip discovery and go straight to Step 3 using those.
 
 Otherwise:
-1. Ask for the target website domain if not already known from context (default `truemission.id` for TrueMission articles).
+1. Ask for the target website domain if not already known. Never assume a default domain.
 2. Try fetching the sitemap: `https://{domain}/sitemap.xml`, then `https://{domain}/sitemap_index.xml` if the first fails, via WebFetch. Parse out URLs.
 3. If no sitemap is reachable, fall back to WebSearch: `site:{domain} [seed keyword]` and `site:{domain} [related semantic term from NEX-I]`.
 4. From the candidate URLs, keep only same-domain content pages — drop tag/category/pagination/author archive pages. Prioritize by topical relevance to the seed keyword and NEX-I semantic terms.

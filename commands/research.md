@@ -28,6 +28,6 @@ allowed-tools: WebSearch, WebFetch
 ## Rules
 - Never fabricate SERP data.
 - State which results were inaccessible and proceed with available data. If fewer than 3 results are accessible, flag this and ask the user whether to proceed with partial data or provide manual URLs.
-- Keyword too broad (e.g. "marketing", "asuransi")? Don't proceed — ask the user to narrow it, suggesting 2–3 example subtopics.
+- Keyword too broad (e.g. "marketing", "technology")? Don't proceed — ask the user to narrow it, suggesting 2–3 example subtopics.
 - Keyword is a brand name? Flag that branded SERPs behave differently (knowledge panels, brand-owned results) and note likely-low organic competition in the content gap section.
 - Paywalled result? Note it's paywalled, extract what's visible from meta title/description/preview only — never fabricate what's behind the paywall.

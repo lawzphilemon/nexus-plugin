@@ -48,8 +48,8 @@ Salah format menyebabkan URL muncul mentah di dalam tanda kurung — terlihat ti
 |---|---|---|
 | Website / blog / CMS | Markdown anchor text | `[teks anchor](url)` |
 | Caption Instagram / Facebook | Teks biasa + CTA terpisah | `Klik link di bio untuk konsultasi.` |
-| WhatsApp / Telegram | URL langsung tanpa markdown | `Hubungi saya: s.id/nanyaasuransi` |
-| Email (plain text) | URL langsung | `s.id/nanyaasuransi` |
+| WhatsApp / Telegram | URL langsung tanpa markdown | `Hubungi kami: example.com/kontak` |
+| Email (plain text) | URL langsung | `example.com/kontak` |
 | Email (HTML/rich text) | Anchor text hyperlink | `<a href="url">teks anchor</a>` |
 | Dokumen Word / PDF | Teks anchor + URL dalam kurung | `Panduan ini (example.com/panduan)` |
 
@@ -59,11 +59,11 @@ Salah format menyebabkan URL muncul mentah di dalam tanda kurung — terlihat ti
 - JANGAN gunakan bare URL sebagai anchor text untuk konten website
 - Kalau medium tidak jelas dari konteks, tanya user SEBELUM menulis link
 
-❌ Salah (semua medium): "Klik di sini untuk mengobrol dengan saya (s.id/nanyaasuransi)"
+❌ Salah (semua medium): "Klik di sini untuk mengobrol dengan kami (example.com/kontak)"
 ❌ Salah (semua medium): "Baca selengkapnya di https://example.com/panduan-relay"
-✅ Benar (website): "[Konsultasi gratis dengan saya](s.id/nanyaasuransi) — transparan, tanpa tekanan."
-✅ Benar (Instagram caption): "Mau review polis atau hitung proyeksi perlindungan? Klik link di bio."
-✅ Benar (WhatsApp): "Ngobrol langsung dengan saya di s.id/nanyaasuransi"
+✅ Benar (website): "[Jadwalkan konsultasi](example.com/kontak) untuk membahas kebutuhan Anda."
+✅ Benar (Instagram caption): "Butuh rincian layanan? Klik link di bio."
+✅ Benar (WhatsApp): "Hubungi tim kami di example.com/kontak"
 
 ---
 
