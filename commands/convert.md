@@ -1,83 +1,82 @@
 ---
 name: convert
-description: Inject conversion layer (WhatsApp CTA + product upsell) into a finished article draft, using the target website's own brand colors
+description: Add site-branded contact CTAs and factual product or service mentions to a finished article
 allowed-tools: WebFetch, WebSearch
 ---
 
-# NEX-U — Upsell & Conversion Layer
+# NEX-U — Conversion Layer
 
-**Mission:** Turn a finished article into a lead-generating asset by placing WhatsApp CTAs and soft product upsell content at the reader's natural reading pauses, styled to match the target website's own brand colors, without breaking GEO/SEO structure or compliance rules.
+**Mission:** Turn a finished article into a lead-generating asset by adding relevant contact CTAs and optional product or service mentions at natural reading pauses, without breaking GEO/SEO structure or making unsupported claims.
 
-**Dependency:** Requires a finished article draft (ideally NEX-Fn output). If missing → "Paste the final draft, or run /finaldraft first."
+**Dependency:** Requires a finished article draft, ideally NEX-Fn output. If missing: "Paste the final draft, or run /finaldraft first."
 
 Retrieve the `wa-cta-standard` and `product-upsell` skills before writing any output.
 
----
+## Step 0 — Confirm conversion inputs
 
-## Step 0 — Site, Contact & Vertical Detection
+Confirm these inputs from context or ask for them:
 
-Ask for (or confirm from context) three things if not already known:
-1. **Target website domain.** If it's `truemission.id`, skip color fetching — use the TrueMission defaults directly. Otherwise WebFetch the homepage and extract brand colors as below.
-2. **Contact channel for the CTA button** — the link and pre-filled message text. Default to TrueMission's own WhatsApp link (below) *only* if this is confirmed to be a TrueMission/Prudential article. For any other client, ask for their contact link and preferred pre-filled text — never reuse TrueMission's number for another client.
-3. **Client vertical** — is this an insurance/Prudential client, or a different industry? This determines whether Step 2 uses the full `product-upsell` skill (insurance-specific: Opsi A, UP formula, RIPLAY, insurance compliance checklist) or a generic soft-mention fallback.
+1. **Target website domain** for brand-color detection.
+2. **CTA destination and button label**, such as a WhatsApp link, contact form, email link, booking page, or product page.
+3. **Offer details**, if a product or service should be mentioned: name, audience, verified features, evidence, restrictions, and approved claims.
 
-TrueMission default contact link (use only when confirmed as TrueMission/Prudential):
-```
-https://api.whatsapp.com/send?phone=6281908414041&text=Salam%20Lawrence%2C%20Aku%20mau%20tanya-tanya%20dulu%20dong%20soal%20asuransi%20Prudential...
-```
+Never invent or reuse a domain, contact destination, brand palette, credential, product detail, price, or claim.
 
-### Brand color detection
-1. WebFetch the site's homepage.
-2. Identify the dominant brand colors from what's visible: header/nav background, primary button color, accent color used on links or highlights, body text color, page background.
-3. Map what you find to the `wa-cta-standard` color slots (`{accent}`, `{dark-bg}`, `{light-bg}`, `{gold}`, `{body-text}`, `{muted-text}`, `{border}`, `{footer-text}`). Fill every slot you can identify confidently.
-4. If a slot can't be confidently identified (e.g. no clear secondary accent), state which one is missing and either ask the user for it or reuse the closest analogous color already found — don't guess a color that wasn't actually observed.
-5. Briefly confirm the detected palette and contact link with the user before proceeding (one line, e.g. "Detected [site]'s colors: accent #XXXXXX, background #XXXXXX. Using [contact link] as the CTA destination.").
+### Brand-color detection
 
----
+1. WebFetch the website homepage.
+2. Identify visible colors used for navigation, primary buttons, accents, text, backgrounds, and borders.
+3. Map them to the `wa-cta-standard` color slots.
+4. If a required color cannot be identified confidently, ask the user for it or reuse the closest observed color while preserving readable contrast. Do not invent a brand color.
+5. Confirm the palette and CTA destination in one line before proceeding.
 
-## Step 1 — Locate Conversion Points
+## Step 1 — Locate conversion points
 
-**If the outline used to write this draft tagged Conversion Points** (i.e. each H2 was marked `— Conversion point: [None / Variant 1 / Variant 2 / Variant 3]` at the NEX-O stage): use those positions exactly. Do not re-scan or second-guess them.
+If the outline contains `Conversion point: [None / Variant 1 / Variant 2 / Variant 3]` tags, use those positions exactly.
 
-**If no Conversion Point tags exist** (draft came from outside the pipeline, or an older outline): scan the draft for the most natural reading pauses — points where a reader has just received a complete piece of value and would look up before continuing, not arbitrary section breaks. Typical spots, in order of strength:
-- Right after a mechanism / "cara kerja" explanation finishes → Variant 1 (light)
-- Right after an emotional or risk-relief moment (risk scenario, "bagaimana kalau terjadi") resolves → Variant 2 (dark)
-- The natural close of the article, after the reader has everything they need → Variant 3 (light, centered)
+If tags are absent, select only natural pauses where a reader has just received a complete piece of value:
 
-A CTA mid-sentence, mid-list, or interrupting an unfinished thought is never natural — it must sit in the whitespace between one complete idea and the next. Never place inside a Direct Answer Block, a FAQ Q&A, or a Definition Box — these must stay self-contained per GEO rules. If fewer than 3 genuine pauses exist, use fewer. Do not pad to hit 3.
+- After a mechanism or process explanation: Variant 1.
+- After a problem, risk, or decision section resolves: Variant 2.
+- At the natural close of the article: Variant 3.
 
-## Step 2 — Product Mapping
+Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, Definition Box, metadata section, or schema. Use fewer than three CTAs when fewer than three genuine pauses exist.
 
-**If this is an insurance/Prudential client** (per the vertical confirmed in Step 0): retrieve and follow the `product-upsell` skill in full — Opsi A framing (soft mention + comparison table), the confirmed UP formula, RIPLAY as the data source, and its compliance checklist. Nothing in this branch changes from that skill.
+## Step 2 — Map the offer
 
-**If this is a different industry**: write a lighter generic version instead —
-- One soft, factual sentence mentioning the relevant product/service, tied to what the article just covered — never a hard sales pitch.
-- An optional short comparison (max 4 rows) only if the user has supplied real product/service details in context — never fabricate features, pricing, or claims.
-- If no product/service info is available in context, ask the user for it rather than guessing, or skip Step 2 entirely if they'd rather just run CTA placement without a product mention.
-- Skip the insurance-specific compliance items (UP formula, unit-link disclaimer, waiting period) — those don't apply outside insurance content. Still apply general honesty rules: no guaranteed outcomes, no fabricated stats or testimonials, no competitor bashing.
+Follow `product-upsell` using only verified offer details from Step 0.
 
-## Step 3 — CTA Copy + HTML Injection
+- Add one soft, factual sentence connecting the offer to the section above.
+- Add a short comparison table only when the supplied data supports it.
+- If offer details are missing, ask for them or skip the offer mention and insert CTAs only.
+- For regulated or high-stakes topics, use current authoritative sources and include required qualifications or disclaimers. If those inputs are unavailable, do not publish the claim.
 
-Use the exact specs from the `wa-cta-standard` skill (three variants, inline-style HTML, WordPress Classic Editor Text-tab only).
+## Step 3 — Write and inject CTA blocks
 
-Eyebrow/headline/body copy for each CTA must match the emotional beat of the section it sits in — never generic "hubungi sekarang" language. Reference the actual content just above it.
+Follow `wa-cta-standard` for the three HTML variants. Match each block's copy to the section immediately above it. Use the confirmed CTA destination and button label.
 
-Never exceed 3 CTAs total per article, regardless of article length.
+Never exceed three CTA blocks per article.
 
-## Step 4 — Compliance Check
+## Step 4 — Validate
 
-**If insurance/Prudential client**: verify against the full `product-upsell` skill checklist (guaranteed-approval claims, unit-link disclaimer, 12-month waiting period, competitor bashing, political content, beneficiary-update reminder). Fix any failure before delivering.
+Before delivery, verify:
 
-**If other industry**: verify the general rules still apply — no guaranteed outcomes, no fabricated stats/testimonials, no competitor bashing, no political content. Fix any failure before delivering.
+- No fabricated claims, prices, statistics, testimonials, credentials, or product details.
+- No guaranteed outcomes or unsupported comparisons.
+- Every link and color comes from confirmed input or the target website.
+- Regulated claims include the required source, qualification, and disclaimer.
+- The article's GEO/SEO structure, On-Page SEO Pack, and Schema Markup remain unchanged.
 
-Never deliver non-compliant content in either case.
+Fix every failure before delivery.
 
 ## Output
 
-Deliver the full article with CTA blocks inserted inline at their exact position, as plaintext HTML (Google Docs cannot render live HTML — this is expected).
+Deliver the full article with CTA blocks inserted as plaintext HTML at their exact positions.
 
-Preserve the On-Page SEO Pack and Schema Markup from NEX-Fn unchanged after the article. Do not place CTA blocks inside the metadata or schema.
+Preserve the On-Page SEO Pack and Schema Markup from NEX-Fn unchanged after the article.
 
-Directly below each injected CTA block, add a one-line implementation note in brackets, e.g. `[Paste this block in WordPress Classic Editor → Text tab. Do not switch to Visual tab after pasting.]`
+Directly below each CTA block, add:
 
-End with: "CTA placement done — [N] block(s) inserted. Paste to WordPress Classic Editor Text tab only. Run /export-docx to export this converted version."
+`[Paste this block in WordPress Classic Editor → Text tab. Do not switch to Visual tab after pasting.]`
+
+End with: "CTA placement done — [N] block(s) inserted. Run /export-docx to export this converted version."

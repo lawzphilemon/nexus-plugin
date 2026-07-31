@@ -5,11 +5,11 @@ description: Run NEX-U to add site-branded CTA blocks and compliant product or s
 
 # NEXUS Conversion Adapter for Codex
 
-Read and follow `../../commands/convert.md` completely. Also load `../wa-cta-standard/SKILL.md` completely. Load `../product-upsell/SKILL.md` completely only for insurance or Prudential work.
+Read and follow `../../commands/convert.md` completely. Also load `../wa-cta-standard/SKILL.md` and `../product-upsell/SKILL.md` completely.
 
 Map Claude tools to Codex capabilities as follows:
 
 - `WebSearch` means internet search.
 - `WebFetch` means opening and inspecting the target site.
 
-Confirm detected brand colors and the exact contact destination before inserting CTA HTML. Never reuse the TrueMission contact destination for another client.
+Confirm detected brand colors, the exact contact destination, and any offer details before inserting CTA HTML. Never invent or reuse client-specific values.
