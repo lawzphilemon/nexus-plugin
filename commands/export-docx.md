@@ -1,55 +1,57 @@
 ---
 name: export-docx
-description: Export the latest finalized or converted NEXUS article to a verified Word DOCX with an SEO metadata table, formatted article hierarchy, and JSON-LD schema.
-argument-hint: [output-path]
+description: Export the canonical NEXUS article artifact to a verified Word DOCX with an SEO metadata table, formatted article hierarchy, and JSON-LD schema.
+argument-hint: [source.md] [output.docx]
 allowed-tools: Read, Write, Bash
 ---
 
 # NEX-X - DOCX Export
 
-**Mission:** Export the latest complete NEX-Fn or NEX-U article to a real `.docx` without changing its content.
+**Mission:** Export the latest complete NEX-Fn or NEX-U artifact to a real `.docx` without rewriting or changing its content.
 
-**Dependency:** Require the article, On-Page SEO Pack, and Schema Markup. Recover them from the current conversation when available; otherwise ask the user for the missing output.
+## Source
+
+Use `nexus-output/latest.md` by default. It must contain:
+
+1. Valid YAML metadata with `title`, `slug`, and `meta-description`.
+2. The complete article beginning with its H1.
+3. `Schema Markup (JSON-LD)` as the final heading, followed by the complete schema in a fenced `json` block.
+
+If `/convert` ran, use the converted artifact. CTA HTML must remain in fenced `html` blocks so it exports as plaintext, paste-ready code.
+
+When no artifact exists, recover the latest complete article, On-Page SEO Pack, and schema from the current conversation and write `nexus-output/latest.md` once. Do not repeat the article in chat. Ask for missing content only when it cannot be recovered.
 
 ## Workflow
 
-1. Use the latest article version. If `/convert` ran, use the converted version and preserve its CTA HTML.
-2. Extract the Title tag (falling back to H1), URL slug, Meta description, complete article, and complete valid JSON-LD.
-3. Build one temporary UTF-8 HTML file:
-   - Use Letter portrait, 1-inch margins, Calibri 11 pt, and readable spacing.
-   - Start with a two-column metadata table containing `Judul Artikel`, `Slug`, and `Meta Description`. Use explicit HTML attributes `border="1" cellspacing="0" cellpadding="7" width="624"`, fixed table layout, and column widths `180` and `444`. Set label-cell `bgcolor="#e8eef5"`; do not rely on CSS alone for borders or widths.
-   - Add the article title below the table.
-   - Convert Markdown H1-H6 to semantic `<h1>`-`<h6>`, and preserve paragraphs, emphasis, links, real lists, and article tables.
-   - Give article tables explicit `border`, `cellspacing`, `cellpadding`, total width `624`, and fixed column widths that sum to `624`.
-   - Escape injected CTA HTML inside `<pre>` so it remains plaintext and paste-ready instead of rendering as a live CTA.
-   - End with `<h1>Schema Markup (JSON-LD)</h1>` and pretty-printed, HTML-escaped JSON-LD inside `<pre>`.
-   - Use inline CSS only. Do not reference external assets.
-4. Choose the final output path:
-   - Use `$ARGUMENTS` when supplied.
-   - Otherwise use the slug without its leading slash, plus `.docx`.
-5. Locate LibreOffice with `command -v soffice` or `command -v soffice.com`. On Windows, also check `/c/Program Files/LibreOffice/program/soffice.com`; LibreOffice may be installed without being in `PATH`. Prefer `soffice.com` on Windows.
-6. Convert the temporary HTML with an isolated temporary LibreOffice profile:
+1. Resolve arguments:
+   - No arguments: source `nexus-output/latest.md`; output derived from its slug.
+   - One `.md` argument: use it as source and derive output from its slug.
+   - One `.docx` argument: use the default source and the supplied output.
+   - Two arguments: source first, output second.
+2. Confirm Pandoc is available with `command -v pandoc`. If absent, stop with the official install link: `https://pandoc.org/installing.html`. Do not install it automatically.
+3. Run:
 
 ```bash
-"<soffice>" --headless "-env:UserInstallation=file:///<temporary-profile>" --convert-to "docx:Office Open XML Text" --outdir "<temporary-output-dir>" "<article.html>"
+"${CLAUDE_PLUGIN_ROOT}/scripts/export-docx.sh" "<source.md>" ["<output.docx>"]
 ```
 
-Move the generated DOCX to the final output path. If LibreOffice is unavailable after checking `PATH` and the standard Windows location, stop and tell the user that LibreOffice is required; do not create a renamed HTML file.
+The script performs the conversion and structural checks locally. It must be the only component that formats the DOCX; do not reconstruct the article as HTML or Markdown in the prompt.
 
-7. Verify the DOCX:
-   - Confirm the output exists, is non-empty, and is a readable ZIP-based DOCX.
-   - Render the DOCX to PDF using LibreOffice and a fresh temporary profile.
-   - If `pdftoppm` is available, render every PDF page to PNG and inspect every page with `Read`.
-   - Fix and regenerate if the metadata table, headings, article tables, CTA code, or schema are clipped or malformed.
-   - If `pdftoppm` is unavailable, inspect the PDF when the active environment supports it and state the exact visual QA boundary.
-8. Remove only the temporary HTML, isolated profile, and render files created by this run. Deliver the final DOCX path.
+4. Optional visual QA:
+   - DOCX generation never requires LibreOffice.
+   - When `soffice` is available, render the generated DOCX to PDF with an isolated temporary profile.
+   - When `pdftoppm` is also available, render and inspect every page. Fix and re-export only if clipping, broken tables, malformed headings, CTA code, or schema are visible.
+   - If either renderer is unavailable, report that structural validation passed and state that visual QA was skipped.
+5. Remove only temporary render files created by this run. Keep the source artifact and final DOCX.
 
 ## Required document order
 
 1. Two-column table with `Judul Artikel`, `Slug`, and `Meta Description`
-2. Article title, then the complete article using real Word `Heading 1`, `Heading 2`, and lower heading styles
-3. `Schema Markup (JSON-LD)` heading and the complete schema in monospaced formatting
+2. Complete article using real Word `Heading 1`, `Heading 2`, and lower heading styles
+3. `Schema Markup (JSON-LD)` and the complete schema in monospaced formatting
 
-Preserve paragraphs, emphasis, links, lists, article tables, and CTA HTML order. Do not repeat the rest of the On-Page SEO Pack below the metadata table.
+Preserve paragraphs, emphasis, links, real lists, article tables, and CTA HTML order. Do not add the rest of the On-Page SEO Pack below the metadata table.
+
+Return only the final DOCX path, structural validation result, and visual-QA status. Do not paste the article again.
 
 End with: "DOCX exported - metadata table, formatted article, and schema included."
