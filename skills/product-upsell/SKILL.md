@@ -1,37 +1,33 @@
 ---
 name: product-upsell
-description: Insurance/Prudential-specific skill. Use when mapping a Prudential product to an article for soft upsell, calculating UP (uang pertanggungan), or checking insurance-content compliance before publishing. Covers Opsi A framing, the confirmed UP formula, and mandatory disclaimers. Do not use for non-insurance clients — /convert falls back to a generic soft-mention approach for those.
+description: Map a verified product or service offer into an article as a soft, factual mention. Use during /convert for any industry while preventing fabricated specifications, prices, comparisons, guarantees, and regulated claims.
 ---
 
-# Product Upsell & Compliance Rules
+# Product or Service Mapping
 
-## Framing — Opsi A only
-Every product mention in article content follows Opsi A: a soft mention plus a short, factual comparison table. Never a hard promotional section, never a bulleted features-and-benefits sales pitch.
+## Required inputs
 
-Comparison table format:
-```
-| Fitur | Tanpa proteksi | Dengan [produk] |
-```
-Max 4 rows. Every cell must be factual and traceable to RIPLAY data or general product mechanics — never fabricated numbers or benefits.
+Use only details supplied by the user or verified from an authoritative source:
 
-## UP (Uang Pertanggungan) calculation
-Confirmed formula — use this one, not an income-replacement formula:
-```
-(rata-rata pengeluaran bulanan × 12) × 5 tahun
-```
-Frame this via the "5-year survival rate" clinical standard (globally recognized recovery/survival window for critical illness), not as a generic savings target.
+- Offer name and intended audience.
+- Problem it addresses and how it relates to the article.
+- Verified features, limitations, eligibility, price, and availability.
+- Approved evidence, claims, credentials, and required disclaimers.
 
-## Product reference sources
-Use RIPLAY documents as the data source for product specifications. If RIPLAY data is not available in context for the product being referenced, say so rather than filling in specs from memory.
+If the information needed for a claim is missing, ask for it or omit the claim.
 
-## Mandatory compliance checks (run before delivery)
-- Never guarantee claim approval without complete medical data
-- Always state that unit-link returns are not guaranteed, if a unit-link product is mentioned
-- Note the 12-month waiting period for relevant pre-existing/critical illness conditions, if the product/topic requires it
-- Never bash a named competitor or competitor product
-- Never discuss politics
-- Repricing must be framed as medical inflation, not company profit
-- If the article touches on life events (marriage, birth, divorce), include a reminder to update policy beneficiary
+## Placement
 
-## CTA quantity
-Max 3 WhatsApp CTAs per article, placed at natural decision points — this is enforced jointly with the `wa-cta-standard` skill, not repeated per product.
+Add one soft, factual sentence at a natural decision point. Explain why the offer is relevant to the section immediately above it. Do not create a detached sales section or a generic features-and-benefits pitch.
+
+An optional comparison table may contain at most four rows. Compare only dimensions supported by supplied or verified evidence. Do not imply that the offer is universally better.
+
+## Validation
+
+- Do not fabricate features, prices, results, statistics, testimonials, credentials, eligibility, or availability.
+- Do not guarantee outcomes, approval, savings, ranking, revenue, health, or financial results.
+- Do not make unsupported competitor comparisons.
+- For regulated or high-stakes topics, use current authoritative sources and preserve required qualifications and disclaimers.
+- Keep the article's informational value and search intent primary.
+
+CTA quantity and visual treatment are handled by `wa-cta-standard`.
