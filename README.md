@@ -47,7 +47,7 @@ Writes the full article from the confirmed outline and silently applies the appr
 
 ### `/finaldraft` — NEX-Fn
 
-Re-runs the humanizer and GEO/SEO checks, then delivers the final article, On-Page SEO Pack, and Schema JSON-LD.
+Re-runs the humanizer and GEO/SEO checks, then saves the final article, On-Page SEO Pack, and Schema JSON-LD once to `nexus-output/latest.md`. Later stages read this artifact directly instead of repeating the article in chat.
 
 ### `/convert` — NEX-U
 
@@ -76,7 +76,9 @@ Exports the latest final or converted article to a Word document containing:
 - Preserved lists, links, article tables, and CTA HTML.
 - JSON-LD schema at the end.
 
-The command uses LibreOffice's native HTML-to-DOCX conversion. Visual QA uses LibreOffice and Poppler when available.
+The command uses Pandoc with the bundled NEXUS Word reference document and Lua filter. Pandoc is the only runtime dependency for DOCX generation; install it from [pandoc.org/installing.html](https://pandoc.org/installing.html).
+
+LibreOffice and Poppler are optional and used only for visual QA when available. Structural validation always runs through Pandoc.
 
 `/export-docx` is currently Claude Code-only.
 

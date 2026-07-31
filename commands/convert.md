@@ -1,14 +1,14 @@
 ---
 name: convert
 description: Add site-branded contact CTAs and factual product or service mentions to a finished article
-allowed-tools: WebFetch, WebSearch
+allowed-tools: Read, Write, WebFetch, WebSearch
 ---
 
 # NEX-U — Conversion Layer
 
 **Mission:** Turn a finished article into a lead-generating asset by adding relevant contact CTAs and optional product or service mentions at natural reading pauses, without breaking GEO/SEO structure or making unsupported claims.
 
-**Dependency:** Requires a finished article draft, ideally NEX-Fn output. If missing: "Paste the final draft, or run /finaldraft first."
+**Dependency:** Requires a finished article draft, ideally `nexus-output/latest.md` from NEX-Fn. Read that artifact first. If neither the artifact nor a complete draft exists: "Paste the final draft, or run /finaldraft first."
 
 Retrieve the `wa-cta-standard` and `product-upsell` skills before writing any output.
 
@@ -71,12 +71,12 @@ Fix every failure before delivery.
 
 ## Output
 
-Deliver the full article with CTA blocks inserted as plaintext HTML at their exact positions.
+Write the full converted article back to `nexus-output/latest.md`, preserving its YAML metadata and replacing only the article body with CTA blocks inserted at their exact positions. Put every CTA block in a fenced `html` block so Pandoc exports it as plaintext, paste-ready code.
 
-Preserve the On-Page SEO Pack and Schema Markup from NEX-Fn unchanged after the article.
+Preserve the On-Page SEO Pack fields in YAML and keep Schema Markup unchanged as the final heading and fenced `json` block.
 
 Directly below each CTA block, add:
 
 `[Paste this block in WordPress Classic Editor → Text tab. Do not switch to Visual tab after pasting.]`
 
-End with: "CTA placement done — [N] block(s) inserted. Run /export-docx to export this converted version."
+Do not duplicate the full article in chat unless explicitly requested. End with: "CTA placement done - [N] block(s) inserted in nexus-output/latest.md. Run /export-docx to export this converted version."
