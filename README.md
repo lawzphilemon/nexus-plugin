@@ -1,85 +1,92 @@
 # NEXUS Content Pipeline
 
-Claude Code and Codex plugin for TrueMission's SEO/GEO content workflow — and reusable for other clients too (see "Not just TrueMission" below).
+General-purpose Claude Code and Codex plugin for SEO/GEO article research, drafting, conversion, and DOCX export. It has no default client, domain, contact destination, product, or brand palette.
 
 ## Install
 
-```
-/plugin marketplace add <your-github-username>/nexus-plugin
+```text
+/plugin marketplace add lawrencephilemon/nexus-plugin
 /plugin install nexus@nexus-plugin
 ```
 
-(Replace `<your-github-username>` with the actual GitHub path once uploaded — e.g. `lawrencephilemon/nexus-plugin`.)
-
 ### Codex
 
-The Codex adapter uses the same `commands/*.md` and shared skills as Claude, so both platforms remain in sync. Install the repository as a Codex plugin, then use `$nexus-pipeline` to continue from the latest completed stage or invoke a specific stage such as `$nexus-research`, `$nexus-outline`, or `$nexus-finaldraft`.
+Install the repository as a Codex plugin, then use `$nexus-pipeline` to continue from the latest completed stage or invoke a stage such as `$nexus-research`, `$nexus-outline`, or `$nexus-finaldraft`.
 
-See [`CODEX.md`](CODEX.md) for all Codex entry points and adapter details.
+See [`CODEX.md`](CODEX.md) for Codex entry points.
 
 ## Claude Code pipeline
 
-```
-/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert] → /export-docx
+```text
+/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert | /convert-truemission] → /export-docx
 ```
 
-`/humanize` also works standalone, outside the pipeline.
+`/humanize` also works standalone.
 
 ### `/research` — NEX-R
-Structured SERP analysis: top 5 organic results, PAA questions, featured snippet format, content gap. Never fabricates data — flags inaccessible results and proceeds with what's available.
+
+Analyzes the top organic results, PAA questions, featured-snippet format, and content gaps without fabricating inaccessible data.
 
 ### `/improve` — NEX-I
-Search intent subcategory, semantic gap analysis, SQEG/SQRG compliance notes, and a four-part E-E-A-T gap breakdown. Every point ties back to a specific NEX-R finding.
+
+Identifies search intent, semantic gaps, SQEG/SQRG requirements, and E-E-A-T improvements grounded in NEX-R findings.
 
 ### `/geo` — NEX-G
-Query fan-out table (min. 10 sub-queries), GEO structure prescription (Direct Answer Block, Definition Boxes, Stat Blocks, Comparison Table, FAQ), schema recommendation, and an information gain proposition.
+
+Builds a query fan-out, GEO structure prescription, schema recommendation, and information-gain proposition.
 
 ### `/outline` — NEX-O
-Builds the GEO-compliant article outline.
-- **Internal link discovery** — fetches the target site's `sitemap.xml` (falls back to `site:domain [keyword]` search) to find real, verified internal links instead of relying on manually supplied ones. Never fabricates a URL.
-- **Conversion point tagging** — marks which H2s are natural CTA placement candidates (`None / Variant 1 / Variant 2 / Variant 3`), read later by `/convert`.
+
+Builds a GEO-compliant outline, discovers verified internal links from the supplied domain, and tags natural conversion points.
 
 Requires `WebFetch` and `WebSearch`.
 
 ### `/firstdraft` — NEX-F
-Writes the full draft from the confirmed outline, applies keyword placement and GEO writing rules, then silently runs the humanizer skill before delivering.
+
+Writes the full article from the confirmed outline and silently applies the appropriate language humanizer.
 
 ### `/finaldraft` — NEX-Fn
-Re-runs the humanizer, checks GEO/SEO/humanizer compliance checklists, delivers the finished article plus an On-Page SEO Pack and Schema JSON-LD.
+
+Re-runs the humanizer and GEO/SEO checks, then delivers the final article, On-Page SEO Pack, and Schema JSON-LD.
 
 ### `/convert` — NEX-U
-Turns a finished article into a lead-generating asset: contact CTA blocks + soft product upsell, placed at the reader's natural reading pauses.
-- Reads the Conversion Point tags from `/outline` if present; otherwise scans the draft for natural pauses.
-- **Site Brand Detection** — fetches the target website and extracts its actual colors, so CTA blocks match the site instead of always using TrueMission's palette. Skips this for `truemission.id` (uses the known default palette directly).
-- **Contact link** — asks for the client's own contact link and pre-filled text; only defaults to Lawrence's TrueMission WhatsApp link when the article is confirmed to be a TrueMission/Prudential piece.
-- **Product mapping branches by client vertical** — insurance/Prudential clients get the full `product-upsell` skill (Opsi A, UP formula, insurance compliance checklist); other industries get a lighter generic soft-mention with general honesty rules only.
-- Max 3 CTAs per article, runs a compliance check before delivering.
+
+Adds up to three site-branded contact CTA blocks and optional factual product or service mentions.
+
+- Detects colors from the supplied website.
+- Requires a confirmed CTA destination and button label.
+- Uses only supplied or verified offer details.
+- Applies stronger source and disclaimer checks to regulated or high-stakes claims.
+- Never supplies a default domain, contact, palette, credential, product, or claim.
 
 Requires `WebFetch` and `WebSearch`.
 
+### `/convert-truemission` — NEX-U-TM
+
+Runs the same conversion workflow with an isolated TrueMission/Prudential profile containing the approved domain, WhatsApp destination, brand palette, RIPLAY sourcing rules, UP planning formula, and insurance compliance checks.
+
+This profile is Claude Code-only and is never loaded by the general `/convert` command.
+
 ### `/export-docx` — NEX-X
-Exports the latest final or converted article to a real Word document with:
-- A metadata table for article title, slug, and meta description
-- Real Word heading styles for the article hierarchy
-- Preserved lists, links, article tables, and CTA HTML
-- JSON-LD schema at the end
 
-Uses LibreOffice's native HTML-to-DOCX conversion, so no Python package installation is required. Visual render QA runs through LibreOffice and Poppler when available.
+Exports the latest final or converted article to a Word document containing:
 
-`/export-docx` is currently Claude Code-only; the Codex adapters are unchanged.
+- A metadata table for article title, slug, and meta description.
+- Real Word heading styles for the article hierarchy.
+- Preserved lists, links, article tables, and CTA HTML.
+- JSON-LD schema at the end.
+
+The command uses LibreOffice's native HTML-to-DOCX conversion. Visual QA uses LibreOffice and Poppler when available.
+
+`/export-docx` is currently Claude Code-only.
 
 ### `/humanize` — NEX-H
-Standalone humanizer for any pasted or uploaded text. Auto-detects English vs Bahasa Indonesia (or mixed) and applies the matching skill.
 
-## Skills
+Humanizes Indonesian, English, or mixed text while preserving meaning and E-E-A-T signals.
 
-- `skills/humanizer-id/SKILL.md` — Bahasa Indonesia humanizer: Layer 0 SQEG protections, register, 34 AI-pattern fixes, 15-point self-check
-- `skills/humanizer-en/SKILL.md` — English humanizer: Layer 0 SQEG protections, register, 32 AI-pattern fixes, 16-point self-check
-- `skills/wa-cta-standard/SKILL.md` — the 3 CTA visual variants, color token system, contact-link handling, WordPress Classic Editor rules
-- `skills/product-upsell/SKILL.md` — insurance/Prudential-specific: Opsi A framing, UP calculation formula, compliance checklist
+## Supporting skills
 
-## Not just TrueMission
-
-`/outline`'s internal link discovery and conversion-point tagging are fully generic — they work on any domain. `/convert`'s CTA color system adapts to whatever site it's pointed at, and its contact link + product-mapping logic ask for client-specific details instead of assuming TrueMission every time. The `product-upsell` skill itself is the one piece that stays insurance-specific; for other clients, `/convert` uses its generic fallback instead.
-
-`/research`, `/improve`, `/geo`, `/firstdraft`, and `/finaldraft` are already keyword/market/language-agnostic — nothing in them is TrueMission-specific.
+- `humanizer-id` and `humanizer-en` — language-specific humanization.
+- `wa-cta-standard` — three generic, site-branded CTA layouts.
+- `product-upsell` — evidence-gated product or service mapping for any industry.
+- `truemission-prudential` — isolated Claude-only profile loaded by `/convert-truemission`.
