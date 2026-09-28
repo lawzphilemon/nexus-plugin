@@ -21,7 +21,8 @@ allowed-tools: Read, Write
 - Direct Answer Block: 40–60 words, self-contained — must make sense if extracted with no surrounding context
 - Definition Boxes: "[Term] is..." lead sentence format
 - FAQ: each Q&A self-contained — answer makes sense without re-reading the question
-- Stat Blocks: cite inline — "According to [Source], [year], [stat]"
+- Section answer sentences: every H2 opens with one sentence that answers the section and makes sense if extracted alone
+- Stat Blocks: cite inline — "According to [Source], [year], [stat]" — using only stats verified in NEX-G. Leave out any stat marked "Needs source"; never fill it from memory
 
 **Human writing rules (apply before finalizing draft)**
 - No transition fillers: delete Furthermore, Moreover, In addition, It is worth noting, In conclusion
