@@ -1,40 +1,54 @@
 ---
 name: geo
 description: Query fan-out analysis and GEO content structure prescription — the sub-queries, structures, and schema an article needs to get cited by AI answer engines
-allowed-tools: Read, Write
+allowed-tools: Read, Write, WebSearch, WebFetch
 ---
 
 # NEX-G — Query Fan-Out + GEO Structures
 
-**Mission:** Query fan-out analysis and GEO content structure prescription.
+**Mission:** Query fan-out analysis and GEO content structure prescription, grounded in observed search data.
 
 **Dependency:** Requires NEX-R and NEX-I output. Read `nexus-output/01-research.md` and `nexus-output/02-improve.md` for any output not in the conversation.
 
-1. **Query Fan-Out Table:** generate minimum 10 sub-queries that LLMs (Perplexity, Gemini, ChatGPT Search) would use internally. Distribute: 40% Informational · 30% Commercial · 20% Comparative · 10% Transactional.
+1. **Collect observed queries first:**
+   - PAA questions from NEX-R.
+   - Google autocomplete: WebFetch `https://suggestqueries.google.com/complete/search?client=firefox&hl=[language code]&q=[seed keyword]`, plus the seed keyword followed by common modifiers in the target language (for Indonesian: "adalah", "cara", "vs", "harga", "syarat").
+   - Related searches visible in WebSearch results.
+
+   If a source is unavailable, say so and continue with the others.
+
+2. **Query Fan-Out Table:** at least 10 sub-queries that LLMs (Perplexity, Gemini, ChatGPT Search) would use internally. Use observed queries first, then add inferred ones only to cover gaps.
 
 ```
-| # | Sub-query | Intent | Format | Coverage vs top results | GEO Play |
+| # | Sub-query | Source | Intent | Format | Coverage vs top results | GEO Play |
 ```
 
-GEO Play options: Direct Answer Block / FAQ Schema / HowTo Schema / Comparison Table / Definition Box / Stat Block / Covers in Outline
+   - **Source:** PAA / Autocomplete / Related search / Inferred.
+   - **Intent mix:** follow the dominant and secondary intents from NEX-I. Do not force an intent the SERP does not show; a purely informational keyword may have no transactional sub-queries.
+   - **Language:** write sub-queries the way the target market actually searches, including common mixed-language phrasing, not literal translations.
 
-2. **Prescribe GEO content structures:**
+GEO Play options: Direct Answer Block / FAQ Section / Step-by-step List / Comparison Table / Definition Box / Stat Block / Covers in Outline
+
+3. **Prescribe GEO content structures:**
    - **Direct Answer Block** (mandatory): 40–60 words, immediately after H1, self-contained for AI extraction
+   - **Section answer sentences** (mandatory): every H2 opens with one sentence that answers that section's question and makes sense if extracted alone
    - **Definition Box(es):** for key entities — "[Term] is..." format
-   - **Stat Block(s):** third-party data to cite — suggest sources if known
+   - **Stat Block(s):** only statistics verified in this stage with WebSearch/WebFetch. Give the stat, source name, year, and URL. If a needed stat cannot be verified, list it as "Needs source" and never supply a number or source from memory.
    - **Comparison Table:** if comparative sub-queries exist
    - **FAQ Section** (mandatory): list exact questions — minimum 5, from PAA + fan-out
 
-3. **Schema recommendation:**
-   - Primary type: Article / FAQPage / HowTo / Product
-   - Secondary type if applicable
-   - One-sentence rationale for each
+4. **Schema recommendation:**
+   - Default primary type: `Article` or `BlogPosting`, with `author`, `datePublished`, and `dateModified`.
+   - Secondary type if applicable: `FAQPage` when the article has an FAQ section; `Product` or `Service` only for a real offer page.
+   - One-sentence rationale for each.
+   - Recommend schema for machine readability only. Do not promise rich results: Google no longer shows HowTo rich results and limits FAQ rich results to authoritative government and health sites.
 
-4. **Information gain proposition:** one specific sentence — what unique angle must this article add that does not exist in current top results?
+5. **Information gain proposition:** ask the user what first-hand data, experience, cases, or expertise they can contribute. Build one specific sentence from their answer: the unique angle this article adds that current top results lack. If they have nothing to add, base it on the NEX-R content gap and label it "Gap-based, no first-hand evidence".
 
-5. Save the complete stage output to `nexus-output/03-geo.md` (overwrite if it exists), then deliver it in chat.
-6. End: "Run /outline to continue with NEX-O."
+6. Save the complete stage output to `nexus-output/03-geo.md` (overwrite if it exists), then deliver it in chat.
+7. End: "Run /outline to continue with NEX-O."
 
 ## Rules
 - Sub-queries must be specific phrases, not rewrites of the seed keyword.
 - Every GEO Play must map to a real structural decision in the outline — don't prescribe a structure with no clear home in the article.
+- Never fabricate queries, search data, statistics, or sources. Mark every inferred sub-query as Inferred.

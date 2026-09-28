@@ -18,7 +18,8 @@ allowed-tools: Read, Write
 - [ ] Direct Answer Block present, self-contained, 40-60 words?
 - [ ] All FAQ Q&As self-contained?
 - [ ] Definition Boxes use "[Term] is..." format?
-- [ ] Stat Blocks cite source + year inline?
+- [ ] Every H2 opens with a self-contained answer sentence?
+- [ ] Stat Blocks cite source + year inline, and every stat was verified in NEX-G?
 - [ ] Comparison Table present (if NEX-G prescribed it)?
 - [ ] All fan-out sub-queries from NEX-G covered in content?
 
