@@ -13,7 +13,7 @@ allowed-tools: Read, Write, WebSearch, WebFetch
 1. **Collect observed queries first:**
    - PAA questions from NEX-R.
    - Google autocomplete: WebFetch `https://suggestqueries.google.com/complete/search?client=firefox&hl=[language code]&q=[seed keyword]`, plus the seed keyword followed by common modifiers in the target language (for Indonesian: "adalah", "cara", "vs", "harga", "syarat").
-   - Related searches visible in WebSearch results.
+   - Related searches from NEX-R, or visible in WebSearch results if NEX-R has none.
 
    If a source is unavailable, say so and continue with the others.
 
