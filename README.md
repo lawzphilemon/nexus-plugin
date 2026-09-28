@@ -1,19 +1,13 @@
 # NEXUS Content Pipeline
 
-General-purpose Claude Code and Codex plugin for SEO/GEO article research, drafting, conversion, and DOCX export. It has no default client, domain, contact destination, product, or brand palette.
+General-purpose Claude Code plugin for SEO/GEO article research, drafting, conversion, and DOCX export. It has no default client, domain, contact destination, product, or brand palette.
 
 ## Install
 
 ```text
-/plugin marketplace add lawrencephilemon/nexus-plugin
+/plugin marketplace add lawzphilemon/nexus-plugin
 /plugin install nexus@nexus-plugin
 ```
-
-### Codex
-
-Install the repository as a Codex plugin, then use `$nexus-pipeline` to continue from the latest completed stage or invoke a stage such as `$nexus-research`, `$nexus-outline`, or `$nexus-finaldraft`.
-
-See [`CODEX.md`](CODEX.md) for Codex entry points.
 
 ## Claude Code pipeline
 
@@ -22,6 +16,8 @@ See [`CODEX.md`](CODEX.md) for Codex entry points.
 ```
 
 `/humanize` also works standalone.
+
+Each stage saves its output to `nexus-output/` (`01-research.md` to `05-firstdraft.md`, then `latest.md`), so the pipeline can resume after the conversation is compacted or restarted.
 
 ### `/research` — NEX-R
 

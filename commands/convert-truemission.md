@@ -1,7 +1,7 @@
 ---
 name: convert-truemission
 description: Apply the NEXUS conversion layer using the isolated TrueMission brand profile and Prudential-specific sourcing and compliance rules
-allowed-tools: WebFetch, WebSearch
+allowed-tools: Read, Write, WebFetch, WebSearch
 ---
 
 # NEX-U-TM — TrueMission Conversion Layer
@@ -16,9 +16,9 @@ Read and follow these files completely:
 
 Apply the general `/convert` workflow with these overrides:
 
-- Use the TrueMission domain, CTA destination, and palette from `truemission-prudential`.
+- Use the TrueMission domain and palette from `truemission-prudential`. Ask the user for the WhatsApp CTA destination; it is not stored in the profile.
 - Use the profile's Prudential offer-mapping, RIPLAY sourcing, UP calculation, and compliance rules instead of generic `product-upsell`.
-- Ask only for missing article inputs, the applicable product/RIPLAY, requested CTA-message changes, and any credentials intended for publication.
+- Ask only for the CTA destination, missing article inputs, the applicable product/RIPLAY, requested CTA-message changes, and any credentials intended for publication.
 - Let explicit user instructions override profile defaults after confirming the change.
 
 Do not copy this profile into `/convert` or load it for another brand.

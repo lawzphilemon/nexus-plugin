@@ -1,14 +1,14 @@
 ---
 name: outline
 description: Build the GEO-compliant article outline, discover real internal links from the target website, and tag conversion points for later CTA placement
-allowed-tools: WebFetch, WebSearch
+allowed-tools: WebFetch, WebSearch, Read, Write
 ---
 
 # NEX-O — Article Outline
 
 **Mission:** Build the GEO-compliant article outline with real, verified internal links and pre-tagged conversion points.
 
-**Dependency:** Requires NEX-R, NEX-I, NEX-G output. Missing → "Run /research, /improve, /geo first."
+**Dependency:** Requires NEX-R, NEX-I, NEX-G output. Missing → "Run /research, /improve, /geo first." Read `nexus-output/01-research.md`, `02-improve.md`, and `03-geo.md` for any output not in the conversation.
 
 ## Step 1 — Confirm basics
 Confirm: target language, word count, tone of voice, end-goal CTA. Ask if missing, recommend best practice if unsure (informational 1,500–2,500 words, comparison 2,000–3,000, how-to 1,200–2,000, based on NEX-R SERP average if available).
@@ -56,6 +56,8 @@ H2: Frequently Asked Questions
 
 ## Step 4 — Confirm
 Ask the user to confirm the outline, including the internal links and conversion point tags, before proceeding.
+
+Save the outline to `nexus-output/04-outline.md` (overwrite if it exists), then deliver it in chat. When the user confirms it, apply any requested changes to that file and add `Status: confirmed` as its first line.
 
 End: "Confirm the outline above, then run /firstdraft."
 
