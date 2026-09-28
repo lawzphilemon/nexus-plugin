@@ -19,7 +19,13 @@ allowed-tools: WebSearch, WebFetch, Read, Write, mcp__claude-in-chrome, mcp__Cla
    - Open `https://www.google.com/search?q=[URL-encoded keyword]&hl=[language code]&gl=[country code]` in a new tab.
    - Cookie or consent banner: choose the option that declines non-essential cookies.
    - CAPTCHA or "unusual traffic" page: stop. Never try to solve or bypass it. Ask the user to solve it in their own browser and say "continue", or switch to web search mode.
-   - Read the page and record:
+   - Read the page text and record the items below. To get full organic URLs in ranking order (ads excluded), run:
+
+```js
+[...document.querySelectorAll('#search a h3')].map(h => ({ title: h.innerText, url: h.closest('a').href })).slice(0, 10)
+```
+
+     If it returns nothing (Google changed its layout), take URLs from the page text instead.
      - **Top 5 organic results** in ranking order: URL, title, and snippet. Skip ads/sponsored, shopping, video, map, and AI Overview blocks.
      - **SERP features present:** AI Overview, featured snippet, PAA, video, local pack, shopping, knowledge panel.
      - **AI Overview:** if shown, a short summary of its answer and the domains it cites.
@@ -28,9 +34,12 @@ allowed-tools: WebSearch, WebFetch, Read, Write, mcp__claude-in-chrome, mcp__Cla
      - **Related searches:** exact text.
    - Note that results may be personalized by the signed-in browser profile and location.
 
-4. **Inspect each top 5 page** in the browser: open it, then run this script and use its output:
+4. **Inspect each top 5 page** in the browser: open it, then run this script and use its output. It waits up to 8 seconds for JavaScript-rendered content and ignores hidden headings:
 
 ```js
+const visible = e => e.checkVisibility ? e.checkVisibility() : e.offsetParent !== null;
+const started = Date.now();
+while (Date.now() - started < 8000 && ![...document.querySelectorAll('h1')].some(h => visible(h) && h.innerText.trim())) await new Promise(r => setTimeout(r, 500));
 (() => {
   const main = document.querySelector('article, main, [role=main]') || document.body;
   const types = [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(s => {
@@ -38,8 +47,8 @@ allowed-tools: WebSearch, WebFetch, Read, Write, mcp__claude-in-chrome, mcp__Cla
     catch { return ['(invalid JSON-LD)']; }
   });
   return {
-    h1: [...document.querySelectorAll('h1')].map(h => h.innerText.trim()).filter(Boolean),
-    h2: [...main.querySelectorAll('h2')].map(h => h.innerText.trim()).filter(Boolean).slice(0, 20),
+    h1: [...document.querySelectorAll('h1')].filter(visible).map(h => h.innerText.trim()).filter(Boolean),
+    h2: [...main.querySelectorAll('h2')].filter(visible).map(h => h.innerText.trim()).filter(Boolean).slice(0, 20),
     words: main.innerText.split(/\s+/).filter(Boolean).length,
     schema: types.length ? [...new Set(types)] : 'None',
     modified: document.querySelector('meta[property="article:modified_time"]')?.content || null
@@ -47,6 +56,7 @@ allowed-tools: WebSearch, WebFetch, Read, Write, mcp__claude-in-chrome, mcp__Cla
 })()
 ```
 
+   If `h1` is still empty and `words` is under 100, the page did not render: note it and read it with WebFetch instead. A low word count with a valid H1 is real (short product pages are common).
    Then read the main content to summarize it. If the browser cannot open a page, use WebFetch and mark schema as Unknown. Close every tab this stage opened when done.
 
 5. For each of the top 5 results, report:
