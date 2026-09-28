@@ -25,7 +25,7 @@ GEO Play options: Direct Answer Block / FAQ Schema / HowTo Schema / Comparison T
    - **FAQ Section** (mandatory): list exact questions — minimum 5, from PAA + fan-out
 
 3. **Schema recommendation:**
-   - Primary type: Article / FAQPage / HowToPage / Product
+   - Primary type: Article / FAQPage / HowTo / Product
    - Secondary type if applicable
    - One-sentence rationale for each
 

@@ -41,4 +41,6 @@ MARKDOWN
 "$repo_root/scripts/export-docx.sh" "$work_dir/article.md" "$work_dir/article.docx" >/dev/null
 test -s "$work_dir/article.docx"
 pandoc "$work_dir/article.docx" --to=plain | grep -Fq "Panduan Contoh"
+(cd "$work_dir" && "$repo_root/scripts/export-docx.sh" article.md >/dev/null)
+test -s "$work_dir/panduan-contoh.docx"
 echo "DOCX smoke test passed"
