@@ -1,7 +1,7 @@
 ---
 name: convert-truemission
 description: Apply the NEXUS conversion layer using the isolated TrueMission brand profile and Prudential-specific sourcing and compliance rules
-allowed-tools: WebFetch, WebSearch
+allowed-tools: Read, Write, WebFetch, WebSearch
 ---
 
 # NEX-U-TM — TrueMission Conversion Layer

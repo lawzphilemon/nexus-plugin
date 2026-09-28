@@ -16,7 +16,10 @@ if [[ ! -f "$source_file" ]]; then
 fi
 
 if [[ -z "$output_file" ]]; then
-  slug="$(pandoc "$source_file" --from=markdown+yaml_metadata_block --to=plain --template='$slug$')"
+  slug_template="$(mktemp)"
+  printf '%s' '$slug$' >"$slug_template"
+  slug="$(pandoc "$source_file" --from=markdown+yaml_metadata_block --to=plain --template="$slug_template")"
+  rm -f "$slug_template"
   slug="${slug#/}"
   slug="${slug//\//-}"
   [[ -n "$slug" ]] || slug="nexus-article"
