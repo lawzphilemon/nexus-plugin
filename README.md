@@ -17,6 +17,8 @@ General-purpose Claude Code plugin for SEO/GEO article research, drafting, conve
 
 `/humanize` also works standalone.
 
+Each stage saves its output to `nexus-output/` (`01-research.md` to `05-firstdraft.md`, then `latest.md`), so the pipeline can resume after the conversation is compacted or restarted.
+
 ### `/research` — NEX-R
 
 Analyzes the top organic results, PAA questions, featured-snippet format, and content gaps without fabricating inaccessible data.

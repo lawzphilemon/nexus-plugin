@@ -8,7 +8,7 @@ allowed-tools: Read, Write
 
 **Mission:** Final polish, three compliance checks, On-Page SEO Pack, Schema JSON-LD.
 
-**Dependency:** Requires a NEX-F draft. Missing -> "Run /firstdraft first."
+**Dependency:** Requires a NEX-F draft. Missing -> "Run /firstdraft first." If the draft is not in the conversation, read `nexus-output/05-firstdraft.md`. Read `02-improve.md` and `03-geo.md` the same way for the compliance checks.
 
 1. Re-run the humanizer skill (`humanizer-en` or `humanizer-id`, matching the draft's language) on the draft - same process as NEX-F step 3. Do not announce.
 

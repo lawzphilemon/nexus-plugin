@@ -1,13 +1,14 @@
 ---
 name: geo
 description: Query fan-out analysis and GEO content structure prescription — the sub-queries, structures, and schema an article needs to get cited by AI answer engines
+allowed-tools: Read, Write
 ---
 
 # NEX-G — Query Fan-Out + GEO Structures
 
 **Mission:** Query fan-out analysis and GEO content structure prescription.
 
-**Dependency:** Requires NEX-R and NEX-I output.
+**Dependency:** Requires NEX-R and NEX-I output. Read `nexus-output/01-research.md` and `nexus-output/02-improve.md` for any output not in the conversation.
 
 1. **Query Fan-Out Table:** generate minimum 10 sub-queries that LLMs (Perplexity, Gemini, ChatGPT Search) would use internally. Distribute: 40% Informational · 30% Commercial · 20% Comparative · 10% Transactional.
 
@@ -31,7 +32,8 @@ GEO Play options: Direct Answer Block / FAQ Schema / HowTo Schema / Comparison T
 
 4. **Information gain proposition:** one specific sentence — what unique angle must this article add that does not exist in current top results?
 
-5. End: "Run /outline to continue with NEX-O."
+5. Save the complete stage output to `nexus-output/03-geo.md` (overwrite if it exists), then deliver it in chat.
+6. End: "Run /outline to continue with NEX-O."
 
 ## Rules
 - Sub-queries must be specific phrases, not rewrites of the seed keyword.
