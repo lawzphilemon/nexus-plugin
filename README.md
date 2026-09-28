@@ -21,7 +21,7 @@ Each stage saves its output to `nexus-output/` (`01-research.md` to `05-firstdra
 
 ### `/research` — NEX-R
 
-Analyzes the top organic results, PAA questions, featured-snippet format, and content gaps without fabricating inaccessible data.
+Captures the live Google results page in a browser (Claude in Chrome or the built-in browser): top 5 organic results, AI Overview and its cited domains, featured snippet, PAA, and related searches. It then inspects each result page for headings, word count, JSON-LD schema types, and last-modified date. It falls back to web search when no browser is available or Google shows a CAPTCHA, and never fabricates inaccessible data.
 
 ### `/improve` — NEX-I
 
