@@ -1,13 +1,14 @@
 ---
 name: improve
 description: Search intent analysis, semantic gap analysis, and E-E-A-T improvement points based on NEX-R findings
+allowed-tools: Read, Write
 ---
 
 # NEX-I — Intent, Semantic Gaps, E-E-A-T
 
 **Mission:** Intent analysis, semantic gaps, E-E-A-T improvement points.
 
-**Dependency:** Requires NEX-R output. Missing → "Please run /research first."
+**Dependency:** Requires NEX-R output. Missing → "Please run /research first." If the NEX-R output is not in the conversation, read `nexus-output/01-research.md`.
 
 1. State the search intent subcategory: Informational / Commercial Investigation / Transactional / Navigational. Identify dominant and secondary intents.
 2. Deliver four sections:
@@ -32,7 +33,8 @@ description: Search intent analysis, semantic gap analysis, and E-E-A-T improvem
 - Authoritativeness: what citations, credentials, or named sources are absent?
 - Trustworthiness: what dates, disclaimers, or verifiable data are missing?
 
-3. End: "Run /geo to continue with NEX-G."
+3. Save the complete stage output to `nexus-output/02-improve.md` (overwrite if it exists), then deliver it in chat.
+4. End: "Run /geo to continue with NEX-G."
 
 ## Rules
 Every point must reference a specific finding from NEX-R. No generic advice — if a point could apply to any article regardless of the SERP data, rewrite it to be specific or drop it.

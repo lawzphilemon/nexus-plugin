@@ -11,12 +11,7 @@ Apply this profile only after loading the general `/convert` workflow and `wa-ct
 ## Fixed profile
 
 - Website: `truemission.id`
-- CTA destination:
-
-```text
-https://api.whatsapp.com/send?phone=6281908414041&text=Salam%20Lawrence%2C%20Aku%20mau%20tanya-tanya%20dulu%20dong%20soal%20asuransi%20Prudential...
-```
-
+- CTA destination: not stored in this repository. Ask the user for the WhatsApp link before inserting CTA blocks.
 - CTA channel: WhatsApp
 
 Map the TrueMission palette to the generic CTA tokens:

@@ -1,7 +1,7 @@
 ---
 name: research
 description: Structured SERP analysis for a target keyword — top 5 results, PAA questions, content gaps
-allowed-tools: WebSearch, WebFetch
+allowed-tools: WebSearch, WebFetch, Read, Write
 ---
 
 # NEX-R — SERP Analysis
@@ -23,7 +23,8 @@ allowed-tools: WebSearch, WebFetch
    - **PAA questions** — exact text, all visible
    - **Featured snippet format** — paragraph / list / table / none
    - **Content gap** — what angle, depth, or question is missing across all top results
-5. End: "Run /improve to continue with NEX-I."
+5. Save the complete stage output to `nexus-output/01-research.md` (overwrite if it exists), then deliver it in chat.
+6. End: "Run /improve to continue with NEX-I."
 
 ## Rules
 - Never fabricate SERP data.

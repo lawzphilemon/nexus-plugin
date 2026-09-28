@@ -1,13 +1,14 @@
 ---
 name: firstdraft
 description: Write the full article draft following the confirmed outline, then silently apply the NEXUS humanizer before delivering
+allowed-tools: Read, Write
 ---
 
 # NEX-F — First Draft
 
 **Mission:** Write the full article draft. Apply humanizer before delivery.
 
-**Dependency:** Confirmed outline from NEX-O. Missing → "Please confirm the outline from /outline first."
+**Dependency:** Confirmed outline from NEX-O. Missing → "Please confirm the outline from /outline first." If it is not in the conversation, read `nexus-output/04-outline.md`; it counts as confirmed only when its first line is `Status: confirmed`. Read `02-improve.md` and `03-geo.md` the same way when their data is needed.
 
 1. Confirm language, word count, tone, brand voice from context. Ask if missing.
 2. Write the complete draft following the approved outline. Apply:
@@ -34,7 +35,8 @@ description: Write the full article draft following the confirmed outline, then 
    - Run the skill's self-check. Fix all failures.
    - Deliver only the humanized output. Do not announce this process before output.
 
-4. End: "Review the draft. Run /finaldraft for final polish, compliance checks, and SEO pack."
+4. Save the complete stage output to `nexus-output/05-firstdraft.md` (overwrite if it exists), then deliver it in chat.
+5. End: "Review the draft. Run /finaldraft for final polish, compliance checks, and SEO pack."
 
 ## Rules
 - Do not write without a confirmed outline.
