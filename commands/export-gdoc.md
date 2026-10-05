@@ -11,25 +11,25 @@ allowed-tools: Read, Bash
 
 ## Source
 
-Use `nexus-output/latest.md` by default, or the `.md` path given as an argument. It needs the same structure as `/export-docx`: valid YAML with `title`, `slug`, and `meta-description`, the complete article from its H1, and `Schema Markup (JSON-LD)` as the final heading. If `/convert` ran, use the converted artifact. If no artifact exists, say so and suggest running `/finaldraft` first.
+Use `nexus-output/latest.md` by default, or the `.md` path given as an argument. It needs valid YAML with `title`, `slug`, and `meta-description`, the complete article from its H1, and `Schema Markup (JSON-LD)` as the final heading. If `/convert` ran, use the converted artifact. If no artifact exists, say so and suggest running `/finaldraft` first.
 
 ## Workflow
 
 1. Confirm Pandoc is available with `command -v pandoc`. If absent, stop with the official install link: `https://pandoc.org/installing.html`.
-2. Build the HTML with the same filter as `/export-docx`, so the Doc starts with the `Judul Artikel` / `Slug` / `Meta Description` table:
+2. Build the HTML with the bundled filter, so the Doc starts with the `Judul Artikel` / `Slug` / `Meta Description` table:
 
 ```bash
-pandoc "<source.md>" --from=markdown+yaml_metadata_block+raw_html --to=html --lua-filter="${CLAUDE_PLUGIN_ROOT}/scripts/nexus-docx.lua" --output="nexus-output/<slug>.gdoc.html"
+pandoc "<source.md>" --from=markdown+yaml_metadata_block+raw_html --to=html --no-highlight --lua-filter="${CLAUDE_PLUGIN_ROOT}/scripts/nexus-gdoc.lua" --output="nexus-output/<slug>.gdoc.html"
 ```
 
-   CTA HTML and the JSON-LD stay in code blocks, so they arrive as plaintext, paste-ready code.
+   CTA HTML and the JSON-LD stay in plain (unhighlighted) code blocks, so they arrive as paste-ready code with no stray links or styling.
 
 3. Upload with the Google Drive connector's create-file tool:
    - Title: the article's H1.
    - Content: the full `.gdoc.html` file as text, content type `text/html`. Leave conversion to Google Docs on.
    - Folder: only if the user names one. Find it with the connector's search first.
 
-   No Google Drive connector: say so, and offer `/export-docx`. The user can upload the `.docx` to Drive and open it with Google Docs.
+   No Google Drive connector: say so, keep the `.gdoc.html` file, and tell the user to upload it to Google Drive and open it with Google Docs. Skip step 4.
 
 4. Delete `nexus-output/<slug>.gdoc.html`. Keep the source artifact.
 

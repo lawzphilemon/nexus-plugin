@@ -39,7 +39,7 @@ function Pandoc(doc)
   local parsed = pandoc.read(html, "html")
   local metadata_table = parsed.blocks[1]
   if metadata_table == nil or metadata_table.t ~= "Table" then
-    error("Failed to build the DOCX metadata table")
+    error("Failed to build the metadata table")
   end
 
   metadata_table.colspecs = {
