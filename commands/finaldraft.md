@@ -88,10 +88,11 @@ Final draft complete and saved to nexus-output/latest.md. Choose:
 1. Revise the article
 2. Run /convert
 3. Run /export-docx
-4. Run /convert, then /export-docx
+4. Run /export-gdoc (Google Docs)
+5. Run /convert, then export (DOCX or Google Docs)
 ```
 
-If the user chooses option 4, complete `/convert` first and export that converted version without asking them to repeat the request.
+If the user chooses option 5, complete `/convert` first and export that converted version in the chosen format without asking them to repeat the request.
 
 Paste the full article into chat only when the user explicitly asks to see it.
 

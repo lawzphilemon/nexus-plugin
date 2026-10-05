@@ -79,4 +79,4 @@ Directly below each CTA block, add:
 
 `[Paste this block in WordPress Classic Editor → Text tab. Do not switch to Visual tab after pasting.]`
 
-Do not duplicate the full article in chat unless explicitly requested. End with: "CTA placement done - [N] block(s) inserted in nexus-output/latest.md. Run /export-docx to export this converted version."
+Do not duplicate the full article in chat unless explicitly requested. End with: "CTA placement done - [N] block(s) inserted in nexus-output/latest.md. Run /export-docx or /export-gdoc to export this converted version."

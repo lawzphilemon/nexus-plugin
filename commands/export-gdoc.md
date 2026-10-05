@@ -1,0 +1,43 @@
+---
+name: export-gdoc
+description: Export the canonical NEXUS article artifact to a Google Doc with the SEO metadata table, real headings, links, tables, CTA code, and JSON-LD schema
+argument-hint: [source.md]
+allowed-tools: Read, Bash
+---
+
+# NEX-GD - Google Docs Export
+
+**Mission:** Put the latest complete NEX-Fn or NEX-U artifact in a Google Doc for review, comments, or client handoff, without rewriting or changing its content.
+
+## Source
+
+Use `nexus-output/latest.md` by default, or the `.md` path given as an argument. It needs the same structure as `/export-docx`: valid YAML with `title`, `slug`, and `meta-description`, the complete article from its H1, and `Schema Markup (JSON-LD)` as the final heading. If `/convert` ran, use the converted artifact. If no artifact exists, say so and suggest running `/finaldraft` first.
+
+## Workflow
+
+1. Confirm Pandoc is available with `command -v pandoc`. If absent, stop with the official install link: `https://pandoc.org/installing.html`.
+2. Build the HTML with the same filter as `/export-docx`, so the Doc starts with the `Judul Artikel` / `Slug` / `Meta Description` table:
+
+```bash
+pandoc "<source.md>" --from=markdown+yaml_metadata_block+raw_html --to=html --lua-filter="${CLAUDE_PLUGIN_ROOT}/scripts/nexus-docx.lua" --output="nexus-output/<slug>.gdoc.html"
+```
+
+   CTA HTML and the JSON-LD stay in code blocks, so they arrive as plaintext, paste-ready code.
+
+3. Upload with the Google Drive connector's create-file tool:
+   - Title: the article's H1.
+   - Content: the full `.gdoc.html` file as text, content type `text/html`. Leave conversion to Google Docs on.
+   - Folder: only if the user names one. Find it with the connector's search first.
+
+   No Google Drive connector: say so, and offer `/export-docx`. The user can upload the `.docx` to Drive and open it with Google Docs.
+
+4. Delete `nexus-output/<slug>.gdoc.html`. Keep the source artifact.
+
+Return only the Google Doc link. Do not paste the article again.
+
+End with: "Google Doc ready - metadata table, formatted article, and schema included."
+
+## Rules
+
+- Don't change sharing. The Doc stays private to the user until they share it.
+- Upload only the article artifact. Never upload research notes, earlier stage files, or contact details that are not in the article.
