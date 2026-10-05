@@ -71,7 +71,7 @@ Fix every failure before delivery.
 
 ## Output
 
-Write the full converted article back to `nexus-output/latest.md`, preserving its YAML metadata and replacing only the article body with CTA blocks inserted at their exact positions. Keep any `FAQ metabox (paste per field)` block unchanged, with no CTA copy in it. Put every CTA block in a fenced `html` block so Pandoc exports it as plaintext, paste-ready code.
+Write the full converted article back to `nexus-output/latest.md`, preserving its YAML metadata and replacing only the article body with CTA blocks inserted at their exact positions. Keep any `FAQ metabox (paste per field)` block unchanged, with no CTA copy in it. Take the FAQ delivery mode from the artifact's `faq-delivery` YAML field, not from line positions. Put every CTA block in a fenced `html` block so Pandoc exports it as plaintext, paste-ready code.
 
 Preserve the On-Page SEO Pack fields in YAML and keep Schema Markup unchanged as the final heading and fenced `json` block.
 

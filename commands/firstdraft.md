@@ -21,7 +21,7 @@ allowed-tools: Read, Write
 - Direct Answer Block: 40–60 words, self-contained — must make sense if extracted with no surrounding context
 - Definition Boxes: "[Term] is..." lead sentence format
 - FAQ: each Q&A self-contained — answer makes sense without re-reading the question
-- FAQ delivery (from the outline's `FAQ delivery` line; `body` if absent):
+- FAQ delivery (from the `FAQ delivery:` line in the first 3 lines of the outline, which is line 2 once confirmed; `body` if absent):
   - `body`: write the FAQ as an H2 section in the article.
   - `metabox`: the body has no FAQ section. After the article, add a separate `# FAQ metabox (paste per field)` block with numbered Q/A pairs. Answers are plain text only (no links, bold, or lists), 40–60 words, and the first sentence answers the question directly
 - Section answer sentences: every H2 opens with one sentence that answers the section and makes sense if extracted alone
