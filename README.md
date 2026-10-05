@@ -1,6 +1,6 @@
 # NEXUS Content Pipeline
 
-General-purpose Claude Code plugin for SEO/GEO article research, drafting, conversion, and DOCX export. It has no default client, domain, contact destination, product, or brand palette.
+General-purpose Claude Code plugin for SEO/GEO article research, drafting, conversion, and Google Docs export. It has no default client, domain, contact destination, product, or brand palette.
 
 ## Install
 
@@ -12,7 +12,7 @@ General-purpose Claude Code plugin for SEO/GEO article research, drafting, conve
 ## Claude Code pipeline
 
 ```text
-/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert | /convert-truemission] → /export-docx
+/research → /improve → /geo → /outline → /firstdraft → /finaldraft → [/convert | /convert-truemission] → /export-gdoc
 ```
 
 `/humanize` also works standalone.
@@ -65,20 +65,17 @@ Runs the same conversion workflow with an isolated TrueMission/Prudential profil
 
 This profile is Claude Code-only and is never loaded by the general `/convert` command.
 
-### `/export-docx` — NEX-X
+### `/export-gdoc` — NEX-GD
 
-Exports the latest final or converted article to a Word document containing:
+Exports the latest final or converted article to a Google Doc through the Google Drive connector, containing:
 
-- A metadata table for article title, slug, and meta description.
-- Real Word heading styles for the article hierarchy.
-- Preserved lists, links, article tables, and CTA HTML.
+- A metadata table for article title, slug, meta description, main keyword, related keywords, and publisher notes (when any).
+- Real headings for the article hierarchy.
+- Preserved lists, links, article tables, and CTA HTML as paste-ready code.
+- The FAQ metabox block, when that mode is used.
 - JSON-LD schema at the end.
 
-The command uses Pandoc with the bundled NEXUS Word reference document and Lua filter. Pandoc is the only runtime dependency for DOCX generation; install it from [pandoc.org/installing.html](https://pandoc.org/installing.html).
-
-LibreOffice and Poppler are optional and used only for visual QA when available. Structural validation always runs through Pandoc.
-
-`/export-docx` is currently Claude Code-only.
+It uses Pandoc with the bundled Lua filter; install Pandoc from [pandoc.org/installing.html](https://pandoc.org/installing.html). The Doc stays private until you share it. Without a Google Drive connector, the command keeps the generated HTML file so you can upload it to Drive and open it with Google Docs.
 
 ### `/humanize` — NEX-H
 

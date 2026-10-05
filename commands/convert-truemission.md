@@ -23,4 +23,4 @@ Apply the general `/convert` workflow with these overrides:
 
 Do not copy this profile into `/convert` or load it for another brand.
 
-Deliver the same file-based output structure as `/convert`, preserving the YAML On-Page SEO Pack fields and final Schema Markup. Do not duplicate the article in chat. End with: "TrueMission conversion done - [N] CTA block(s) inserted in nexus-output/latest.md. Run /export-docx to export this converted version."
+Deliver the same file-based output structure as `/convert`, preserving the YAML On-Page SEO Pack fields and final Schema Markup. Do not duplicate the article in chat. End with: "TrueMission conversion done - [N] CTA block(s) inserted in nexus-output/latest.md. Run /export-gdoc to export this converted version."
