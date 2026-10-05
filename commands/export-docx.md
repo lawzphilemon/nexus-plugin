@@ -48,6 +48,7 @@ The script performs the conversion and structural checks locally. It must be the
 
 1. Two-column table with `Judul Artikel`, `Slug`, and `Meta Description`
 2. Complete article using real Word `Heading 1`, `Heading 2`, and lower heading styles
+   - In `faq-delivery: metabox` mode, the `FAQ metabox (paste per field)` block follows the article
 3. `Schema Markup (JSON-LD)` and the complete schema in monospaced formatting
 
 Preserve paragraphs, emphasis, links, real lists, article tables, and CTA HTML order. Do not add the rest of the On-Page SEO Pack below the metadata table.

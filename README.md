@@ -35,6 +35,8 @@ Builds a query fan-out, GEO structure prescription, schema recommendation, and i
 
 Builds a GEO-compliant outline, discovers verified internal links from the supplied domain, and tags natural conversion points.
 
+It also confirms **FAQ delivery**: `body` (default, FAQ as an H2 with FAQPage in the article schema) or `metabox` (for sites whose CMS renders the FAQ from a separate field and emits its own FAQPage). In metabox mode, later stages deliver the FAQ as a separate plain-text Q/A block and leave FAQPage out of the custom JSON-LD. `scripts/faq-scan.py` (Python stdlib, read-only) can detect the mode from existing posts and flags empty `FAQPage` output.
+
 Requires `WebFetch` and `WebSearch`.
 
 ### `/firstdraft` — NEX-F
