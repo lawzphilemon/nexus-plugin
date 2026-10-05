@@ -70,14 +70,19 @@ H2: Frequently Asked Questions          ← body mode only
   — Estimated words: [X–Y], counted outside the body word count
 ```
 
-Start the outline with a `FAQ delivery: [body / metabox]` line. In metabox mode, the last CTA (Variant 3) stays at the end of the body, because the metabox renders after it.
+Start the outline with a `FAQ delivery: [body / metabox]` header line. In metabox mode, the last CTA (Variant 3) stays at the end of the body, because the metabox renders after it.
 
 **Conversion point tagging rule:** place a conversion point only where a reader would naturally pause after getting real value — right after a mechanism/explanation section, right after an emotional or risk-relief moment, or at the close. Never tag the Direct Answer Block, a Definition Box, or the FAQ section — those must stay self-contained. Max 3 tagged points total across the whole outline.
 
 ## Step 4 — Confirm
 Ask the user to confirm the outline, including the internal links and conversion point tags, before proceeding.
 
-Save the outline to `nexus-output/04-outline.md` (overwrite if it exists), then deliver it in chat. When the user confirms it, apply any requested changes to that file and add `Status: confirmed` as its first line.
+Save the outline to `nexus-output/04-outline.md` (overwrite if it exists), then deliver it in chat. When the user confirms it, apply any requested changes to that file and insert `Status: confirmed` above the existing header. A confirmed outline always starts:
+
+```text
+Status: confirmed
+FAQ delivery: [body / metabox]
+```
 
 End: "Confirm the outline above, then run /firstdraft."
 
