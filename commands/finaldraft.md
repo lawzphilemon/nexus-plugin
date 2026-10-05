@@ -59,6 +59,11 @@ h1: "[H1]"
 image-alt-text-template: "[Image alt text template]"
 internal-links-used: "[anchor -> URL; anchor -> URL]"
 faq-delivery: "[body or metabox]"
+main-keyword: "[primary keyword]"
+related-keywords:
+  - "[related keyword]"
+notes:
+  - "[open item for the publisher]"
 ---
 
 # [H1]
@@ -78,6 +83,8 @@ faq-delivery: "[body or metabox]"
 }
 ```
 ````
+
+`main-keyword` and `related-keywords` are mandatory. Related keywords are the NEX-I semantic keywords actually used in the article. `notes` lists only open items the publisher must act on before publishing, such as a stat still marked "Needs source", an image or screenshot to add, a disclaimer to confirm, or notes the user asked to include. Omit `notes` entirely when there are none. These fields appear in the metadata table of `/export-gdoc`.
 
 Write valid YAML and escape values when needed. The article must contain no duplicated SEO pack. The schema heading and fenced JSON block must be last.
 

@@ -69,7 +69,7 @@ This profile is Claude Code-only and is never loaded by the general `/convert` c
 
 Exports the latest final or converted article to a Google Doc through the Google Drive connector, containing:
 
-- A metadata table for article title, slug, and meta description.
+- A metadata table for article title, slug, meta description, main keyword, related keywords, and publisher notes (when any).
 - Real headings for the article hierarchy.
 - Preserved lists, links, article tables, and CTA HTML as paste-ready code.
 - The FAQ metabox block, when that mode is used.

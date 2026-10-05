@@ -16,10 +16,10 @@ Use `nexus-output/latest.md` by default, or the `.md` path given as an argument.
 ## Workflow
 
 1. Confirm Pandoc is available with `command -v pandoc`. If absent, stop with the official install link: `https://pandoc.org/installing.html`.
-2. Build the HTML with the bundled filter, so the Doc starts with the `Judul Artikel` / `Slug` / `Meta Description` table:
+2. Build the HTML with the bundled filter, so the Doc starts with the metadata table: `Judul Artikel`, `Slug`, `Meta Description`, `Main Keyword`, `Related Keywords`, and `Notes` (rows without a value are skipped):
 
 ```bash
-pandoc "<source.md>" --from=markdown+yaml_metadata_block+raw_html --to=html --no-highlight --lua-filter="${CLAUDE_PLUGIN_ROOT}/scripts/nexus-gdoc.lua" --output="nexus-output/<slug>.gdoc.html"
+pandoc "<source.md>" --from=markdown+yaml_metadata_block+raw_html --to=html --wrap=none --no-highlight --lua-filter="${CLAUDE_PLUGIN_ROOT}/scripts/nexus-gdoc.lua" --output="nexus-output/<slug>.gdoc.html"
 ```
 
    CTA HTML and the JSON-LD stay in plain (unhighlighted) code blocks, so they arrive as paste-ready code with no stray links or styling.
