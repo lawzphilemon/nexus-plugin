@@ -17,6 +17,7 @@ allowed-tools: Read, Write
 **GEO compliance**
 - [ ] Direct Answer Block present, self-contained, 40-60 words?
 - [ ] All FAQ Q&As self-contained?
+- [ ] Metabox mode only: no FAQ section in the body, metabox answers are plain text and 40–60 words, and the metabox block matches the questions from the outline?
 - [ ] Definition Boxes use "[Term] is..." format?
 - [ ] Every H2 opens with a self-contained answer sentence?
 - [ ] Stat Blocks cite source + year inline, and every stat was verified in NEX-G?
@@ -45,7 +46,7 @@ Image alt text template: "[descriptive phrase including primary keyword] - [cont
 Internal links used: [anchor text] -> [destination URL]
 ```
 
-5. Generate Schema Markup (JSON-LD) based on NEX-G's recommendation. For FAQPage schema, include all Q&A pairs verbatim.
+5. Generate Schema Markup (JSON-LD) based on NEX-G's recommendation. In body mode, include FAQPage with all Q&A pairs verbatim. In metabox mode, exclude FAQPage entirely, because the CMS metabox emits it.
 
 6. Write the complete result once to `nexus-output/latest.md`. Do not duplicate the article in chat. Use this exact artifact structure:
 
@@ -57,11 +58,16 @@ meta-description: "[Meta description]"
 h1: "[H1]"
 image-alt-text-template: "[Image alt text template]"
 internal-links-used: "[anchor -> URL; anchor -> URL]"
+faq-delivery: "[body or metabox]"
 ---
 
 # [H1]
 
 [Complete article]
+
+# FAQ metabox (paste per field)
+
+[Metabox mode only: numbered plain-text Q/A pairs. Omit this heading in body mode.]
 
 # Schema Markup (JSON-LD)
 

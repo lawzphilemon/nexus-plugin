@@ -21,6 +21,9 @@ allowed-tools: Read, Write
 - Direct Answer Block: 40–60 words, self-contained — must make sense if extracted with no surrounding context
 - Definition Boxes: "[Term] is..." lead sentence format
 - FAQ: each Q&A self-contained — answer makes sense without re-reading the question
+- FAQ delivery (from the outline's `FAQ delivery` line; `body` if absent):
+  - `body`: write the FAQ as an H2 section in the article.
+  - `metabox`: the body has no FAQ section. After the article, add a separate `# FAQ metabox (paste per field)` block with numbered Q/A pairs. Answers are plain text only (no links, bold, or lists), 40–60 words, and the first sentence answers the question directly
 - Section answer sentences: every H2 opens with one sentence that answers the section and makes sense if extracted alone
 - Stat Blocks: cite inline — "According to [Source], [year], [stat]" — using only stats verified in NEX-G. Leave out any stat marked "Needs source"; never fill it from memory
 
@@ -33,7 +36,7 @@ allowed-tools: Read, Write
 
 3. **Apply humanizer before delivery, silently:**
    - Detect language. English → retrieve the `humanizer-en` skill. Indonesian → retrieve the `humanizer-id` skill. Mixed content → apply the correct skill per section, and state this once after delivery (not before).
-   - Run the skill's self-check. Fix all failures.
+   - Run the skill's self-check. Fix all failures. In metabox mode, humanize the FAQ metabox block too; it is visible on-page text.
    - Deliver only the humanized output. Do not announce this process before output.
 
 4. Save the complete stage output to `nexus-output/05-firstdraft.md` (overwrite if it exists), then deliver it in chat.

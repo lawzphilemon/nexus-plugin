@@ -40,7 +40,7 @@ If tags are absent, select only natural pauses where a reader has just received 
 - After a problem, risk, or decision section resolves: Variant 2.
 - At the natural close of the article: Variant 3.
 
-Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, Definition Box, metadata section, or schema. Use fewer than three CTAs when fewer than three genuine pauses exist.
+Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, FAQ metabox block, Definition Box, metadata section, or schema. Use fewer than three CTAs when fewer than three genuine pauses exist.
 
 ## Step 2 — Map the offer
 
@@ -71,7 +71,7 @@ Fix every failure before delivery.
 
 ## Output
 
-Write the full converted article back to `nexus-output/latest.md`, preserving its YAML metadata and replacing only the article body with CTA blocks inserted at their exact positions. Put every CTA block in a fenced `html` block so Pandoc exports it as plaintext, paste-ready code.
+Write the full converted article back to `nexus-output/latest.md`, preserving its YAML metadata and replacing only the article body with CTA blocks inserted at their exact positions. Keep any `FAQ metabox (paste per field)` block unchanged, with no CTA copy in it. Put every CTA block in a fenced `html` block so Pandoc exports it as plaintext, paste-ready code.
 
 Preserve the On-Page SEO Pack fields in YAML and keep Schema Markup unchanged as the final heading and fenced `json` block.
 
