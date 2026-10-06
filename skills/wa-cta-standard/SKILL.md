@@ -1,6 +1,6 @@
 ---
 name: wa-cta-standard
-description: Build contact CTA HTML blocks for articles in WordPress Classic Editor. Use for three site-branded visual variants with a user-confirmed destination and no hardcoded brand or contact defaults.
+description: Build contact CTA HTML blocks for articles in WordPress Classic Editor. Use for up to two blocks per article (top and bottom) in three site-branded visual variants with a user-confirmed destination and no hardcoded brand or contact defaults.
 ---
 
 # Contact CTA Visual Standard
@@ -59,7 +59,7 @@ Use at the natural close of the article.
 
 ## Rules
 
-- Use at most three CTA blocks and only these variants.
+- Use at most two CTA blocks per article: one top (Variant 1 or 2) and one bottom (Variant 3). Never add a middle CTA.
 - Reference the preceding section instead of using generic CTA filler.
 - Escape or encode the confirmed destination correctly in the HTML.
 - Deliver plaintext HTML with an implementation note.
