@@ -72,7 +72,7 @@ H2: Frequently Asked Questions          ← body mode only
 
 Start the outline with a `FAQ delivery: [body / metabox]` header line. In metabox mode, the last CTA (Variant 3) stays at the end of the body, because the metabox renders after it.
 
-**Conversion point tagging rule:** place a conversion point only where a reader would naturally pause after getting real value — right after a mechanism/explanation section, right after an emotional or risk-relief moment, or at the close. Never tag the Direct Answer Block, a Definition Box, or the FAQ section — those must stay self-contained. Max 3 tagged points total across the whole outline.
+**Conversion point tagging rule:** place a conversion point only where a reader would naturally pause after getting real value — right after a mechanism/explanation section, right after an emotional or risk-relief moment, or at the close. Never tag the Direct Answer Block, a Definition Box, or the FAQ section — those must stay self-contained. Max 2 tagged points total: one **top** CTA at the first natural pause after real value (Variant 1 after a mechanism/explanation, Variant 2 after a problem or risk-relief moment) and one **bottom** CTA at the close (Variant 3). Never tag a middle CTA.
 
 ## Step 4 — Confirm
 Ask the user to confirm the outline, including the internal links and conversion point tags, before proceeding.

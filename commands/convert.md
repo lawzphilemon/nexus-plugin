@@ -32,15 +32,18 @@ Never invent or reuse a domain, contact destination, brand palette, credential, 
 
 ## Step 1 — Locate conversion points
 
-If the outline contains `Conversion point: [None / Variant 1 / Variant 2 / Variant 3]` tags, use those positions exactly.
+Each article gets at most two CTAs: one **top** and one **bottom**. No middle CTA.
+
+If the outline contains `Conversion point: [None / Variant 1 / Variant 2 / Variant 3]` tags, use those positions exactly. If an older outline has three tags, keep the first and the last, and drop the middle one.
 
 If tags are absent, select only natural pauses where a reader has just received a complete piece of value:
 
-- After a mechanism or process explanation: Variant 1.
-- After a problem, risk, or decision section resolves: Variant 2.
-- At the natural close of the article: Variant 3.
+- **Top:** the first such pause in the article.
+  - After a mechanism or process explanation: Variant 1.
+  - After a problem, risk, or decision section resolves: Variant 2.
+- **Bottom:** the natural close of the article: Variant 3.
 
-Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, FAQ metabox block, Definition Box, metadata section, or schema. Use fewer than three CTAs when fewer than three genuine pauses exist.
+Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, FAQ metabox block, Definition Box, metadata section, or schema. Use only the bottom CTA when no genuine top pause exists.
 
 ## Step 2 — Map the offer
 
@@ -55,7 +58,7 @@ Follow `product-upsell` using only verified offer details from Step 0.
 
 Follow `wa-cta-standard` for the three HTML variants. Match each block's copy to the section immediately above it. Use the confirmed CTA destination and button label.
 
-Never exceed three CTA blocks per article.
+Never exceed two CTA blocks per article.
 
 ## Step 4 — Validate
 
