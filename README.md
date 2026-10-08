@@ -49,7 +49,7 @@ Re-runs the humanizer and GEO/SEO checks, then saves the final article, On-Page 
 
 ### `/convert` — NEX-U
 
-Adds up to two site-branded contact CTA blocks (one top, one bottom) and optional factual product or service mentions.
+Adds one or two site-branded contact CTA blocks (always a closing CTA; an earlier one only when the article is long enough and a section past 40% maps to the offer) and optional factual product or service mentions.
 
 - Detects colors from the supplied website.
 - Requires a confirmed CTA destination and button label.

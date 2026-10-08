@@ -32,18 +32,20 @@ Never invent or reuse a domain, contact destination, brand palette, credential, 
 
 ## Step 1 — Locate conversion points
 
-Each article gets at most two CTAs: one **top** and one **bottom**. No middle CTA.
+Each article gets 1 or 2 CTAs. The closing CTA (Variant 3) is always used; an earlier CTA is optional.
 
-If the outline contains `Conversion point: [None / Variant 1 / Variant 2 / Variant 3]` tags, use those positions exactly. If an older outline has three tags, keep the first and the last, and drop the middle one.
+If the outline has a `CTAs:` header line, use its `Conversion point` tags exactly. If it has no `CTAs:` line (an outline made before this rule), or no tags at all, apply this rule and keep at most one earlier tag that passes it:
 
-If tags are absent, select only natural pauses where a reader has just received a complete piece of value:
+**CTA count — decide 1 or 2.** The closing CTA (Variant 3) at the end of the body is always used. Add one earlier CTA only when all of these are true:
 
-- **Top:** the first such pause in the article.
-  - After a mechanism or process explanation: Variant 1.
-  - After a problem, risk, or decision section resolves: Variant 2.
-- **Bottom:** the natural close of the article: Variant 3.
+1. The planned body is at least 1,500 words.
+2. A section ends where the reader has just seen the problem the offer solves, or a task they would rather hand off, so the CTA follows naturally from it: Variant 1 after a mechanism or process, Variant 2 after a problem or risk.
+3. That section starts at least 40% into the body. Never use the introduction, the Direct Answer Block, or the first H2.
+4. At least two H2 sections separate it from the closing CTA.
 
-Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, FAQ metabox block, Definition Box, metadata section, or schema. Use only the bottom CTA when no genuine top pause exists.
+If any condition fails, use 1 CTA. When in doubt, use 1.
+
+Never place a CTA mid-sentence, mid-list, inside a Direct Answer Block, FAQ answer, FAQ metabox block, Definition Box, metadata section, or schema. State the CTA count and its one-line reason in the delivery message.
 
 ## Step 2 — Map the offer
 
