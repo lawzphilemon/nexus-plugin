@@ -48,7 +48,7 @@ Self-contained. Must answer the seed keyword without needing surrounding context
 H2: [section title]
   — Basis: [NEX-I or NEX-G finding that justifies this section]
   — GEO structure: [structure this section uses]
-  — Conversion point: [None / Variant 1 / Variant 2 / Variant 3]
+  — Conversion point: [None / Variant 1 or 2 (earlier CTA, only if the CTA count is 2) / Variant 3 (closing CTA)]
   — Estimated words: [X–Y]
   H3: [subsection if needed]
 
@@ -70,18 +70,28 @@ H2: Frequently Asked Questions          ← body mode only
   — Estimated words: [X–Y], counted outside the body word count
 ```
 
-Start the outline with a `FAQ delivery: [body / metabox]` header line. In metabox mode, the last CTA (Variant 3) stays at the end of the body, because the metabox renders after it.
+Start the outline with two header lines: `FAQ delivery: [body / metabox]` and `CTAs: [1 / 2] — [one-line reason]`, for example `CTAs: 1 — no section past 40% maps to the offer` or `CTAs: 2 — after "[section]", where the reader [reason]`. In metabox mode, the last CTA (Variant 3) stays at the end of the body, because the metabox renders after it.
 
-**Conversion point tagging rule:** place a conversion point only where a reader would naturally pause after getting real value — right after a mechanism/explanation section, right after an emotional or risk-relief moment, or at the close. Never tag the Direct Answer Block, a Definition Box, or the FAQ section — those must stay self-contained. Max 2 tagged points total: one **top** CTA at the first natural pause after real value (Variant 1 after a mechanism/explanation, Variant 2 after a problem or risk-relief moment) and one **bottom** CTA at the close (Variant 3). Never tag a middle CTA.
+**CTA count — decide 1 or 2.** The closing CTA (Variant 3) at the end of the body is always used. Add one earlier CTA only when all of these are true:
+
+1. The planned body is at least 1,500 words.
+2. A section ends where the reader has just seen the problem the offer solves, or a task they would rather hand off, so the CTA follows naturally from it: Variant 1 after a mechanism or process, Variant 2 after a problem or risk.
+3. That section starts at least 40% into the body. Never use the introduction, the Direct Answer Block, or the first H2.
+4. At least two H2 sections separate it from the closing CTA.
+
+If any condition fails, use 1 CTA. When in doubt, use 1.
+
+**Conversion point tagging rule:** tag only where a reader naturally pauses after getting real value. Never tag the Direct Answer Block, a Definition Box, or the FAQ section — those must stay self-contained. Tag the closing CTA, plus the earlier CTA only when the CTA count is 2.
 
 ## Step 4 — Confirm
-Ask the user to confirm the outline, including the internal links and conversion point tags, before proceeding.
+Ask the user to confirm the outline, including the internal links, the CTA count with its reason, and the conversion point tags, before proceeding. The user can override the CTA count.
 
 Save the outline to `nexus-output/04-outline.md` (overwrite if it exists), then deliver it in chat. When the user confirms it, apply any requested changes to that file and insert `Status: confirmed` above the existing header. A confirmed outline always starts:
 
 ```text
 Status: confirmed
 FAQ delivery: [body / metabox]
+CTAs: [1 / 2] — [reason]
 ```
 
 End: "Confirm the outline above, then run /firstdraft."
